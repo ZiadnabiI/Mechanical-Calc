@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كالكوليتر ميكانيكا</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1> Mechanical Calculator</h1>
+            <p> -------Ziad Nabil-------</p>
+        </header>
+
+        <section id="main-menu" class="main-menu">
+            <div class="welcome-card">
+                <h2>اختار اللي عايز تحسبه</h2>
+                <div class="menu-buttons">
+                    <button class="btn btn--primary btn--lg" onclick="navigateToSection('gear-calculations')">
+                        <span class="icon">⚙️</span>
+                        حسابات التروس
+                    </button>
+                    <button class="btn btn--primary btn--lg" onclick="navigateToSection('flange-calculations')">
+                        <span class="icon">🔧</span>
+                        حسابات الفلنشات
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="gear-calculations" class="calculation-section hidden">
+            <div class="section-header">
+                <h2>حسابات التروس</h2>
+                <button class="btn btn--outline" onclick="navigateToSection('main-menu')">رجع للقائمة الرئيسية</button>
+            </div>
+
+            <div class="calculations-grid">
+                <div class="card calculation-card">
+                    <div class="card__header">
+                        <h3>عدد الأسنان (Z)</h3>
+                        <p class="formula">Z = D/M</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="form-group">
+                            <label class="form-label">قطر الخطوة (D) - مم</label>
+                            <input type="number" class="form-control" id="teeth-diameter" placeholder="أدخل قطر الخطوة" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الموديول (M) - مم</label>
+                            <input type="number" class="form-control" id="teeth-module" placeholder="أدخل الموديول" step="0.01">
+                        </div>
+                        <div class="result-display">
+                            <strong>عدد الأسنان = <span id="teeth-result">--</span></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card calculation-card">
+                    <div class="card__header">
+                        <h3>نسبة التعشيق (GR)</h3>
+                        <p class="formula">GR = Z2/Z1</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="form-group">
+                            <label class="form-label">عدد أسنان الترس اللي بيدور (Z1)</label>
+                            <input type="number" class="form-control" id="driving-teeth" placeholder="أدخل عدد الأسنان" step="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">عدد أسنان الترس اللي بيدور معاه (Z2)</label>
+                            <input type="number" class="form-control" id="driven-teeth" placeholder="أدخل عدد الأسنان" step="1">
+                        </div>
+                        <div class="result-display">
+                            <strong>نسبة التعشيق = <span id="ratio-result">--</span></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card calculation-card">
+                    <div class="card__header">
+                        <h3>قطر الخطوة (D)</h3>
+                        <p class="formula">D = M × Z</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="form-group">
+                            <label class="form-label">الموديول (M) - مم</label>
+                            <input type="number" class="form-control" id="pitch-module" placeholder="أدخل الموديول" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">عدد الأسنان (Z)</label>
+                            <input type="number" class="form-control" id="pitch-teeth" placeholder="أدخل عدد الأسنان" step="1">
+                        </div>
+                        <div class="result-display">
+                            <strong>قطر الخطوة = <span id="pitch-result">--</span> مم</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card calculation-card">
+                    <div class="card__header">
+                        <h3>الموديول (M)</h3>
+                        <p class="formula">M = D/Z</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="form-group">
+                            <label class="form-label">قطر الخطوة (D) - مم</label>
+                            <input type="number" class="form-control" id="module-diameter" placeholder="أدخل قطر الخطوة" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">عدد الأسنان (Z)</label>
+                            <input type="number" class="form-control" id="module-teeth" placeholder="أدخل عدد الأسنان" step="1">
+                        </div>
+                        <div class="result-display">
+                            <strong>الموديول = <span id="module-result">--</span> مم</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="flange-calculations" class="calculation-section hidden">
+            <div class="section-header">
+                <h2>حسابات الفلنشات</h2>
+                <button class="btn btn--outline" onclick="navigateToSection('main-menu')">رجع للقائمة الرئيسية</button>
+            </div>
+
+            <div class="calculations-grid">
+                <div class="card calculation-card">
+                    <div class="card__header">
+                        <h3>حساب المسافة بين المسامير</h3>
+                        <p class="formula">C = sin(180° - A) × B</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="form-group">
+                            <label class="form-label">عدد المسامير (A)</label>
+                            <input type="number" class="form-control" id="flange-bolts" placeholder="أدخل عدد المسامير" step="1" value="12">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">البعد B - مم</label>
+                            <input type="number" class="form-control" id="flange-dimension" placeholder="أدخل البعد B" step="0.01" value="330.2">
+                        </div>
+                        <div class="result-display">
+                            <strong>المسافة C = <span id="flange-result">--</span> مم</strong>
+                        </div>
+                        <div class="example-display">
+                            <h4>مثال:</h4>
+                            <p>A = 12, B = 330.2 مم, C = 85.46 مم</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card calculation-card">
+                    <div class="card__header">
+                        <h3>قطر دائرة المسامير (PCD)</h3>
+                        <p class="formula">PCD = B × 0.8</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="form-group">
+                            <label class="form-label">القطر الخارجي للفلنشة - مم</label>
+                            <input type="number" class="form-control" id="pcd-diameter" placeholder="أدخل القطر الخارجي" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">عدد المسامير</label>
+                            <input type="number" class="form-control" id="pcd-bolts" placeholder="أدخل عدد المسامير" step="1">
+                        </div>
+                        <div class="result-display">
+                            <strong>قطر دايرة المسامير = <span id="pcd-result">--</span> مم</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card calculation-card">
+                    <div class="card__header">
+                        <h3>تخانة الفلنشة التقديرية</h3>
+                        <p class="formula">t = D/20 + P/10</p>
+                    </div>
+                    <div class="card__body">
+                        <div class="form-group">
+                            <label class="form-label">القطر الداخلي - مم</label>
+                            <input type="number" class="form-control" id="thickness-diameter" placeholder="أدخل القطر الداخلي" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ضغط التشغيل - بار</label>
+                            <input type="number" class="form-control" id="thickness-pressure" placeholder="أدخل الضغط" step="0.1">
+                        </div>
+                        <div class="result-display">
+                            <strong>التخانة التقديرية = <span id="thickness-result">--</span> مم</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
